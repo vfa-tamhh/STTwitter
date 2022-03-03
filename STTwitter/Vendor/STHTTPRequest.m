@@ -937,11 +937,11 @@ static STHTTPRequestCookiesStorage globalCookiesStoragePolicy = STHTTPRequestCoo
 
 - (void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(NSError *)error {
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        __strong typeof(weakSelf) strongSelf = weakSelf;
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         if(strongSelf == nil) return;
         
         if(error == nil) return; // normal session invalidation, no error
@@ -988,7 +988,7 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response
         newRequest:(NSURLRequest *)request
  completionHandler:(void (^)(NSURLRequest *))completionHandler {
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
@@ -1004,11 +1004,11 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response
     totalBytesSent:(int64_t)totalBytesSent
 totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        __strong typeof(weakSelf) strongSelf = weakSelf;
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         if(strongSelf == nil) return;
         
         if(strongSelf.uploadProgressBlock) {
@@ -1022,11 +1022,11 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
               task:(NSURLSessionTask *)task
 didCompleteWithError:(NSError *)error {
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        __strong typeof(weakSelf) strongSelf = weakSelf;
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         if(strongSelf == nil) return;
         
         if (error) {
@@ -1084,11 +1084,11 @@ didCompleteWithError:(NSError *)error {
 didReceiveResponse:(NSURLResponse *)response
  completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        __strong typeof(weakSelf) strongSelf = weakSelf;
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         if(strongSelf == nil) return;
         
         if([dataTask.response isKindOfClass:[NSHTTPURLResponse class]]) {
@@ -1114,11 +1114,11 @@ didReceiveResponse:(NSURLResponse *)response
           dataTask:(NSURLSessionDataTask *)dataTask
     didReceiveData:(NSData *)data {
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        __strong typeof(weakSelf) strongSelf = weakSelf;
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         if(strongSelf == nil) return;
         
         [strongSelf.responseData appendData:data];
@@ -1135,11 +1135,11 @@ didReceiveResponse:(NSURLResponse *)response
  willCacheResponse:(NSCachedURLResponse *)proposedResponse
  completionHandler:(void (^)(NSCachedURLResponse *cachedResponse))completionHandler {
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        __strong typeof(weakSelf) strongSelf = weakSelf;
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         if(strongSelf == nil) return;
         
         NSCachedURLResponse *actualResponse = (globalIgnoreCache || strongSelf.ignoreCache) ? nil : proposedResponse;

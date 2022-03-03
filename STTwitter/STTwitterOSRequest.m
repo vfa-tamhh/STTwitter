@@ -148,11 +148,11 @@ typedef void (^stream_block_t)(NSObject<STTwitterRequestProtocol> *request, NSDa
 didReceiveResponse:(NSURLResponse *)response
  completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     dispatch_async(dispatch_get_main_queue(), ^{
 
-        __strong typeof(weakSelf) strongSelf = weakSelf;
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         
         if(strongSelf == nil) {
             completionHandler(NSURLSessionResponseCancel);
@@ -179,13 +179,13 @@ didReceiveResponse:(NSURLResponse *)response
           dataTask:(NSURLSessionDataTask *)dataTask
     didReceiveData:(NSData *)data {
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
 
     dispatch_async(dispatch_get_main_queue(), ^{
         
         BOOL isStreaming = [[[[dataTask originalRequest] URL] host] rangeOfString:@"stream"].location != NSNotFound;
         
-        __strong typeof(weakSelf) strongSelf = weakSelf;
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         if(strongSelf == nil) {
             return;
         }
@@ -206,11 +206,11 @@ didReceiveResponse:(NSURLResponse *)response
     totalBytesSent:(int64_t)totalBytesSent
 totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
 
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        __strong typeof(weakSelf) strongSelf = weakSelf;
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         if(strongSelf == nil) {
             return;
         }
@@ -230,13 +230,13 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
               task:(NSURLSessionTask *)task
 didCompleteWithError:(NSError *)error {
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
         //NSLog(@"-- didCompleteWithError: %@", [error localizedDescription]);
         
-        __strong typeof(weakSelf) strongSelf = weakSelf;
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         if(strongSelf == nil) return;
         
         if(error) {

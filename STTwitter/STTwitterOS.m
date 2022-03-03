@@ -75,7 +75,7 @@ NSString * const STTwitterOSInvalidatedAccount = @"STTwitterOSInvalidatedAccount
 - (void)verifyCredentialsRemotelyWithSuccessBlock:(void(^)(NSString *username, NSString *userID))successBlock
                                        errorBlock:(void(^)(NSError *error))errorBlock {
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     [self fetchResource:@"account/verify_credentials.json"
              HTTPMethod:@"GET"
@@ -85,7 +85,7 @@ NSString * const STTwitterOSInvalidatedAccount = @"STTwitterOSInvalidatedAccount
   downloadProgressBlock:nil
            successBlock:^(NSObject<STTwitterRequestProtocol> *request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id response) {
                
-               __strong typeof(weakSelf) strongSelf = weakSelf;
+               __strong __typeof(weakSelf) strongSelf = weakSelf;
                if(strongSelf == nil) return;
                
                if([response isKindOfClass:[NSDictionary class]] == NO) {
@@ -149,12 +149,12 @@ NSString * const STTwitterOSInvalidatedAccount = @"STTwitterOSInvalidatedAccount
         return;
     }
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     ACAccountStoreRequestAccessCompletionHandler accountStoreRequestCompletionHandler = ^(BOOL granted, NSError *error) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             
-            __strong typeof(self) strongSelf = weakSelf;
+            __strong __typeof(self) strongSelf = weakSelf;
             
             if(strongSelf == nil) return;
             
