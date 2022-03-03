@@ -111,7 +111,7 @@
 - (void)verifyCredentialsRemotelyWithSuccessBlock:(void(^)(NSString *username, NSString *userID))successBlock
                                        errorBlock:(void(^)(NSError *error))errorBlock {
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     [self postResource:@"oauth2/token"
          baseURLString:@"https://api.twitter.com"
@@ -121,7 +121,7 @@
  downloadProgressBlock:nil
           successBlock:^(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id json) {
               
-              typeof(self) strongSelf = weakSelf;
+              __typeof(self) strongSelf = weakSelf;
               
               if(strongSelf == nil) return;
               

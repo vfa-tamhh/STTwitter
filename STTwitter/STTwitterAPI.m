@@ -35,13 +35,13 @@ static NSDateFormatter *dateFormatter = nil;
 - (instancetype)init {
     self = [super init];
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     self.observer = [[NSNotificationCenter defaultCenter] addObserverForName:ACAccountStoreDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         
         if(weakSelf == nil) return;
         
-        __strong typeof(weakSelf) strongSelf = weakSelf;
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         
         if([strongSelf.oauth isKindOfClass:[STTwitterOS class]]) {
             
@@ -254,11 +254,11 @@ authenticateInsteadOfAuthorize:authenticateInsteadOfAuthorize
 
 - (void)verifyCredentialsWithUserSuccessBlock:(void(^)(NSString *username, NSString *userID))successBlock errorBlock:(void(^)(NSError *error))errorBlock {
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     [_oauth verifyCredentialsLocallyWithSuccessBlock:^(NSString *username, NSString *userID) {
         
-        __strong typeof(self) strongSelf = weakSelf;
+        __strong __typeof(self) strongSelf = weakSelf;
         if(strongSelf == nil) {
             errorBlock(nil);
             return;
@@ -623,12 +623,12 @@ authenticateInsteadOfAuthorize:authenticateInsteadOfAuthorize
 
                                              errorBlock:(void(^)(NSError *error))errorBlock {
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     return [self getUserInformationFor:screenName
                           successBlock:^(NSDictionary *response) {
                               
-                              typeof(self) strongSelf = weakSelf;
+                              __typeof(self) strongSelf = weakSelf;
                               
                               if(strongSelf == nil) return;
                               
@@ -4527,12 +4527,12 @@ authenticateInsteadOfAuthorize:authenticateInsteadOfAuthorize
         
         //NSLog(@"-- SEGMENT INDEX %lu, SUBDATA %@", segmentIndex, NSStringFromRange(subDataRange));
         
-        __weak typeof(self) weakSelf = self;
+        __weak __typeof(self) weakSelf = self;
         
         dispatch_group_enter(group);
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             
-            __strong typeof(weakSelf) strongSelf = weakSelf;
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
             if(strongSelf == nil) {
                 lastErrorReceived = [NSError errorWithDomain:@"STTwitter" code:9999 userInfo:nil]; // TODO: improve
                 return;
@@ -4656,13 +4656,13 @@ authenticateInsteadOfAuthorize:authenticateInsteadOfAuthorize
                                  successBlock:(void(^)(NSString *mediaID, NSInteger size, NSInteger expiresAfter, NSString *videoType))successBlock
                                    errorBlock:(void(^)(NSError *error))errorBlock {
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     [self postMediaUploadINITWithVideoURL:videoURL
                             mediaCategory:mediaCategory
                              successBlock:^(NSString *mediaID, NSInteger expiresAfterSecs) {
                                  
-                                 __strong typeof(self) strongSelf = weakSelf;
+                                 __strong __typeof(self) strongSelf = weakSelf;
                                  if(strongSelf == nil) {
                                      errorBlock(nil);
                                      return;
@@ -4673,7 +4673,7 @@ authenticateInsteadOfAuthorize:authenticateInsteadOfAuthorize
                                                            uploadProgressBlock:uploadProgressBlock
                                                                   successBlock:^(id response) {
                                                                       
-                                                                      __strong typeof(self) strongSelf2 = weakSelf;
+                                                                      __strong __typeof(self) strongSelf2 = weakSelf;
                                                                       if(strongSelf2 == nil) {
                                                                           errorBlock(nil);
                                                                           return;

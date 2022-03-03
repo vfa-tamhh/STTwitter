@@ -283,7 +283,7 @@
     
     NSString *theOAuthCallback = [oauthCallback length] ? oauthCallback : @"oob"; // out of band, ie PIN instead of redirect
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     [self fetchResource:@"oauth/request_token"
              HTTPMethod:@"POST"
@@ -294,7 +294,7 @@
   downloadProgressBlock:nil
            successBlock:^(STHTTPRequest *r, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id body) {
                
-               typeof(self) strongSelf = weakSelf;
+               __typeof(self) strongSelf = weakSelf;
                
                if(strongSelf == nil) return;
                
@@ -364,7 +364,7 @@
                         @"x_auth_mode"     : @"client_auth"};
     
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     [self postResource:@"oauth/access_token"
          baseURLString:@"https://api.twitter.com"
@@ -372,7 +372,7 @@
           successBlock:^(STHTTPRequest *request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSString *body) {
               NSDictionary *dict = [body st_parametersDictionary];
               
-              typeof(self) strongSelf = weakSelf;
+              __typeof(self) strongSelf = weakSelf;
               
               if(strongSelf == nil) return;
               
@@ -384,7 +384,7 @@
               successBlock(strongSelf.oauthAccessToken, strongSelf.oauthAccessTokenSecret, dict[@"user_id"], dict[@"screen_name"]);
           } errorBlock:^(STHTTPRequest *request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error) {
               
-              typeof(self) strongSelf = weakSelf;
+              __typeof(self) strongSelf = weakSelf;
               
               if(strongSelf == nil) return;
               
@@ -415,14 +415,14 @@
     
     NSDictionary *d = @{@"oauth_verifier" : pin};
     
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     [self postResource:@"oauth/access_token"
          baseURLString:@"https://api.twitter.com"
             parameters:d
           successBlock:^(STHTTPRequest *request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSString *body) {
               
-              typeof(self) strongSelf = weakSelf;
+              __typeof(self) strongSelf = weakSelf;
               
               if(strongSelf == nil) return;
               
